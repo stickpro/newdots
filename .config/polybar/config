@@ -1,17 +1,19 @@
-;====================================================
-;
-  To learn more about how to configure Polybar
-  go to https://github.com/jaagr/polybar
-;
-;   The README contains alot of information
-;
-;=====================================================
+;==========================================================
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;			https://github.com/polybar/polybar
+;						light
+;==========================================================
 
 [colors]
-background = #BCC3C3
-background-alt = #1c2023
-foreground = #1c2023
-foreground-alt = #BCC3C3
+background = #000
+background-alt = #ffffff
+foreground = #fff
+foreground-alt = #373b41
 primary = #ffb52a
 secondary = #e60053
 alert = #FF0000
@@ -19,13 +21,13 @@ alert = #FF0000
 [bar/example]
 monitor = ${env:MONITOR:}
 width = 100%
-height = 25
+height = 22
 radius = 0.0
 ;offset-x = 1%
 ;offset-y = 1%
 fixed-center = true
 bottom = no
-
+enable-ipc = true
 foreground = ${colors.foreground-alt}
 background = ${colors.background-alt}
 
@@ -49,170 +51,38 @@ padding-right = 0
 module-margin-left = 0
 module-margin-right = 0
 
-;font-0 = Hack:pixelsize=9;3
-;font-1 = siji:pixelsize=10;3
-;font-2 = FontAwesome5Free:size=10:0;
-;font-2 = FontAwesome5Free:style=Solid:pixelsize=10
-;font-2 = FontAwesome5Brands:style=Solid:pixelsize=10
-
 font-0 = Hack:pixelsize=9;3
-font-2 = "Wuncon Siji:pixelsize=10;3"
-font-1 = Weather Icons:style=Regular:size=10;2
-font-3 = FontAwesome5Free:style=Solid:pixelsize=10;3
-font-4 = FontAwesome5Brands:style=Solid:pixelsize=10;3
+font-1 = FontAwesome5Free:style=Solid:pixelsize=10;3
+font-2 = FontAwesome5Brands:style=Solid:pixelsize=10;3
+font-3 = siji:pixelsize=10;3
 
 ;separator = " "
 
-modules-left = i3 wlan sp2 trash sp2 fs1 sp2  gmail
-modules-right = eth openweathermap-fullfeatured sp2 btc-price sp2 usd-price sp2 pub-ip sp2 volume sp2 filesystem sp1 memory sp1 temperature sp2 battery0 sp2 date
-
-
-;modules-left = i3 wlan sp2 trash sp2 fs1 sp2 fs2 sp2 fs3 sp2 fs4 sp2 btcrub sp2 hum1 sp2 hum2 updates-arch-combined
-;modules-center = vpn-openvpn-status info-ssh-sessions profile xwindow powermenu xkeyboard sp2 xbacklight sp2 netspdeth spi2 battery1  
-;modules-right = eth openweathermap-fullfeatured sp2 netspdwlan sp2 system-cpu-loadavg sp2 btc-price sp2 usd-price sp2 pub-ip sp2 mybright sp2 volume sp2 filesystem sp1 memory sp1 temperature sp2 battery0 sp2 date 
+modules-left = profile i3 xwindow
+modules-center = previous playpause next spotify
+modules-right = netspdwlan sp1 xbacklight sp2 volume sp2 temperature sp2 battery0 sp2 date sp2
 
 tray-position = right
 tray-padding = 0
 tray-detached = false
 tray-maxsize = 14
 ;tray-transparent = false
-;pseudo-transparency = false
 tray-scale = 1.0
 tray-background = ${colors.background-alt}
 tray-foreground = ${colors.foreground-alt}
-tray-offset-x = 0
+tray-offses-x = 0
 tray-offset-y = 0
 
 ;wm-restack = bspwm
-wm-restack = i3
+;wm-restack = i3
 
 ;override-redirect = true
 
-scroll-up = i3wm-wsnext
-scroll-down = i3wm-wsprev
-locale = ru_RU.utf8
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
 cursor-click = pointer
-;cursor-scroll = ns-resize
-
-[module/mybright]
-type = custom/script
-exec = /home/stickpro/soft/scripts/polybar/brightness.sh 
-scroll-up = /home/stickpro/soft/scripts/polybar/brightness.sh + DP1
-scroll-down = /home/stickpro/soft/scripts/polybar/brightness.sh - DP1
-label = %{T4}%{T-} %output%
-interval = 0.5 
-
-
-[module/fs1]
-type = custom/script
-exec = /home/stickpro/soft/scripts/polybar/free_space_home.sh
-interval = 600
-label = %{T4}%{T-} %output%
-
-[module/fs2]
-type = custom/script
-exec = /home/stickpro/soft/scripts/polybar/free_space_mnt.sh
-interval = 600
-label = %{T4}%{T-} %output%
-
-[module/fs3]
-type = custom/script
-exec = /home/stickpro/soft/scripts/polybar/free_space_buflash.sh
-interval = 600
-label = %{T4}%{T-} %output%
-
-[module/btcrub]
-type=custom/script
-exec=/home/stickpro/soft/scripts/polybar/usd_price_2.sh
-interval = 6000
-
-
-[module/ttt]
-type = custom/script
-exec = /home/stickpro/soft/scripts/polybar/inbox-imap-shellnetrc.sh
-interval = 10
-label = %{T4}%{T-} %output%
-click-left = thunderbird 
-
-[module/unread_mail]
-type = custom/script
-click-left=  thunderbird & ; you can set your own client
-exec = /home/stickpro/soft/scripts/polybar/UnseenMail.py
-;exec = /home/stickpro/soft/scripts/polybar/inbox-imap-shellnetrc.sh
-interval = 100
-
-;[module/openweathermap-fullfeatured]
-;type = custom/script
-;exec = /home/stickpro/soft/scripts/polybar/weather-openmap.sh
-;interval = 600
-;label-font = 5
-;label = %{T1} %output% %{T-}
-
-[module/trash]
-type = custom/script
-exec = /home/stickpro/soft/scripts/polybar/trash.sh
-interval = 1
-label = %output%
-format-prefix = "%{T4}%{T-} "
-format-prefix-padding-left = 0
-format-prefix-padding-right = 0
-;format-prefix-foreground = ${colors.foreground}
-label-padding = 0
-;label-foreground = ${colors.foreground}
-click-left = pcmanfm -n ~/.local/share/Trash/files
-click-right = rm -rf ~/.local/share/Trash/files/.??* ;exec notify-send 'Trash cleaned'
-
-[module/test1]
-type = custom/script
-exec = /home/stickpro/soft/scripts/polybar/inbox-imap-shellnetrc.sh
-interval = 60
-label = 1 %output%
-
-[module/system-cpu-loadavg]
-type = custom/script
-exec = /home/stickpro/soft/scripts/polybar/cpu_loadavg.sh
-interval = 5
-label = %output%
-
-[module/pub-ip]
-type = custom/script
-exec = /home/stickpro/soft/scripts/polybar/pub_ip_polybar.sh
-interval = 5
-label = %{T4}%{T-} %output%
-
-[module/btc-price]
-type = custom/script
-exec = /home/stickpro/soft/scripts/polybar/btc_price_coinm.sh
-interval = 5
-label =  %output%
-
-[module/usd-price]
-type = custom/script
-exec = /home/stickpro/soft/scripts/polybar/usd_price_cbr.sh
-interval = 5
-label =  %output%
-
-[module/info-ssh-sessions]
-type = custom/script
-exec = /home/stickpro/soft/scripts/polybar/info_ssh_sessions.sh
-interval = 60
-
-[module/soft]
-type = custom/script
-exec = /home/stickpro/soft/scripts/polybar/info-softwarecounter.py
-interval = 10
-
-[module/vpn-openvpn-status]
-type = custom/script
-exec = /home/stickpro/soft/scripts/polybar/vpn_status.sh
-interval = 5
-
-[module/gmail]
-type = custom/script
-interval = 600
-
-exec = $HOME/.config/polybar/gmail/gmail.py --icon-color=#BCC3C3 
-click-left = xdg-open https://mail.google.com
+cursor-scroll = ns-resize
 
 [module/sp1]
 type = custom/text
@@ -228,37 +98,34 @@ content-background = ${colors.background-alt}
 
 [module/profile]
 type = custom/text
-content = "  BANDITHIJO "
+content = "  STICKPRO "
 content-foreground = ${colors.foreground-alt}
 content-background = ${colors.background-alt}
-
-[module/date]
+click-left = "~/switch.sh &"
 
 [module/i3]
 type = internal/i3
 format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
-strip-wsnumbers = true
+strip-wsnumbers = false
 enable-click = false
 enable-scroll = false
 
-
-
-;ws-icon-0 = DEV;
-;ws-icon-1 = WWW;
-;ws-icon-2 = SSH;
-;ws-icon-3 = CHAT;
-;ws-icon-4 = DOC;
-;ws-icon-5 = SYS;
-ws-icon-6 = MEDIA;
-;ws-icon-7 = VBOX;
+;ws-icon-0 = 1;
+;ws-icon-1 = 2;
+;ws-icon-2 = 3;
+;ws-icon-3 = 4;
+;ws-icon-4 = 5;
+;ws-icon-5 = 6;
+;ws-icon-6 = 7;
+;ws-icon-7 = 8;
+;ws-icon-8 = 9;
+;ws-icon-9 = 10;
 ;ws-icon-default = ♟
 
-
-
 ; Only show workspaces on the same output as the bar
-pin-workspaces = true
+;pin-workspaces = true
 
 label-mode = %mode%
 label-mode-padding = 1
@@ -267,8 +134,8 @@ label-mode-background = ${colors.background-alt}
 
 ; focused = Active workspace on focused monitor
 label-focused = %index%
-label-focused-foreground = ${colors.foreground}
-label-focused-background = ${colors.background}
+label-focused-foreground = ${colors.background-alt}
+label-focused-background = ${colors.foreground-alt}
 label-focused-underline = ${colors.foreground-alt}
 label-focused-padding = 1
 
@@ -308,6 +175,12 @@ icon-next = 
 
 label-song-maxlen = 25
 label-song-ellipsis = true
+
+[module/pub-ip]
+type = custom/script
+exec = /home/stickpro/soft/scripts/polybar/pub_ip_polybar.sh
+interval = 5
+label = %{T4}%{T-} %output%
 
 [module/xbacklight]
 type = internal/xbacklight
@@ -420,16 +293,16 @@ label-background = ${colors.background-alt}
 
 [module/netspdwlan]
 type = internal/network
-interface = wlp2s0
+interface = wlp3s0
 interval = 1.0
 format-connected = "<label-connected>"
-label-connected = "%downspeed:9:9% %upspeed:9:9%"
+label-connected = "%downspeed:3% %upspeed:3% |"
 label-connected-foreground = ${colors.foreground-alt}
 label-connected-background = ${colors.background-alt}
 
 [module/wlan]
 type = internal/network
-interface = wlp4s0
+interface = wlp3s0
 interval = 1.0
 
 ; Available tokens:
@@ -442,11 +315,9 @@ interval = 1.0
 ;   %downspeed% [wireless+wired]
 ;   %linkspeed% [wired]
 ; Default: %ifname% %local_ip%
-format-connected = "<label-connected>"
+format-connected = "<ramp-signal><label-connected>"
 ;format-connected-underline = ${colors.foreground}
-;label-connected = " %essid:0:28:% "
-;label-connected = " %essid% (%signal%%)"
-label-connected = " | W: %signal%%"
+label-connected = " %essid:0:10:% "
 label-connected-foreground = ${colors.foreground-alt}
 label-connected-background = ${colors.background-alt}
 
@@ -491,15 +362,12 @@ label-connected = " %local_ip% "
 type = internal/date
 interval = 1
 
-date = "%A %d %b"
+date = "%d %b"
 date-alt = "%a %Y/%m/%d"
 
 time = " %H:%M:%S"
 time-alt = " %H:%M"
 
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-background = ${colors.background-alt}
 ;format-underline = ${colors.foreground}
 
 label = %date%%time%
@@ -578,21 +446,21 @@ format-discharging = "<ramp-capacity><label-discharging>"
 label-discharging-foreground = ${colors.foreground-alt}
 label-discharging-background = ${colors.background-alt}
 
-format-full-prefix = " "
+format-full-prefix = "  "
 format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-prefix-background = ${colors.background-alt}
 ;format-full-underline = ${self.format-charging-underline}
 
-ramp-capacity-0 = " "
+ramp-capacity-0 = "  "
 ramp-capacity-0-foreground = ${colors.alert}
-ramp-capacity-1 = " "
-ramp-capacity-2 = " "
+ramp-capacity-1 = "  "
+ramp-capacity-2 = "  "
 ramp-capacity-foreground = ${colors.foreground-alt}
 ramp-capacity-background = ${colors.background-alt}
 
-animation-charging-0 = " "
-animation-charging-1 = " "
-animation-charging-2 = " "
+animation-charging-0 = "  "
+animation-charging-1 = "  "
+animation-charging-2 = "  "
 animation-charging-foreground = ${colors.foreground-alt}
 animation-charging-background = ${colors.background-alt}
 animation-charging-framerate = 750
@@ -644,10 +512,10 @@ format-background = ${colors.background-alt}
 format-warn = <ramp><label-warn>
 ;format-warn-underline = #f50a4d
 
-label = "%temperature%"
+label = "%temperature-c%"
 label-foreground = ${colors.foreground-alt}
 label-background = ${colors.background-alt}
-label-warn = "%temperature%"
+label-warn = "%temperature-c%"
 label-warn-foreground = ${colors.alert}
 
 ramp-0 = " "
@@ -663,9 +531,9 @@ expand-right = true
 
 format-spacing = 1
 
-label-open = %{T4}%{T-}
+label-open = 
 label-open-foreground = ${colors.secondary}
-label-close = cancel
+label-close =  cancel
 label-close-foreground = ${colors.secondary}
 label-separator = |
 label-separator-foreground = ${colors.foreground-alt}
@@ -685,6 +553,67 @@ menu-2-0-exec = sudo poweroff
 menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
 
+;                   _   _  __       
+;   ___ _ __   ___ | |_(_)/ _|_   _ 
+;  / __| '_ \ / _ \| __| | |_| | | |
+;  \__ \ |_) | (_) | |_| |  _| |_| |
+;  |___/ .__/ \___/ \__|_|_|  \__, |
+;      |_|                    |___/    
+
+
+[module/previous]
+type = custom/script
+interval = 86400
+format = "%{T3}<label>"
+format-padding = 3
+; Previous song icon
+exec = echo ""
+; Check if spotify is running before displaying the icon
+exec-if = "pgrep spotify"
+;format-underline = #1db954
+line-size = 1
+click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
+
+[module/next]
+type = custom/script
+interval = 86400
+format = "%{T3}<label>"
+format-padding = 3
+; Next song icon
+exec = echo ""
+; Check if spotify is running before displaying the icon
+exec-if = "pgrep spotify"
+;format-underline = #1db954
+line-size = 1
+
+click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
+
+[module/playpause]
+type = custom/ipc
+; Default
+hook-0 = echo ""
+; Playing
+hook-1 = echo ""
+; Paused
+hook-2 = echo ""
+initial = 1
+;format-underline = #1db954
+line-size = 1
+linef-size = 1
+click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
+
+[module/spotify]
+type = custom/ipc
+hook-0 = echo ""
+hook-1 = python3 ~/script/spotify/spotify_status.py
+initial = 1
+format-padding = 2
+;format-underline = #1db954
+linef-size = 1
+label-maxlen = 3
+; [i3wm only] - Uncomment the below line to focus on Spotify when clicking on the song name (credits to https://github.com/Esya)
+click-left = i3-msg '[class="Spotify"] focus'
+
 [settings]
 throttle-output = 5
 throttle-output-for = 10
@@ -703,3 +632,4 @@ compositing-border = over
 margin-top = 5
 margin-bottom = 5
 
+; vim:ft=dosini
